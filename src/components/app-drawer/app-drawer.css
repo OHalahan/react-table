@@ -1,0 +1,16 @@
+.table-container {
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+.button--add-col-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 55px;
+}
+
+.button--add-row-container {
+    position: absolute;
+    padding-left: 55px;
+}
