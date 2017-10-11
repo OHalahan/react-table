@@ -17,6 +17,17 @@
     background-color: #F3A500;
 }
 
+.button--add-col {
+    top: 0;
+    right: 0;
+    margin-top: 55px;
+}
+
+.button--add-row {
+    bottom: 0;
+    margin-left: 55px;
+}
+
 .button--add:hover {
     background-color: #F6C052;
     cursor: pointer;

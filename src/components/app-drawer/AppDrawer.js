@@ -14,11 +14,13 @@ class AppDrawer extends Component {
     }
 
     handlePositionChange(currX, currY) {
-        // console.log(currX, currY);
+        this.refs.delColBtn.positionX = currX;
+        this.refs.delRowBtn.positionY = currY + window.pageYOffset;
     }
 
     handleVisibilityChange(flag) {
-        this.showDelBtn = flag;
+        this.refs.delColBtn.visible = (this.refs.table.columnCount === 1) ? false : flag;
+        this.refs.delRowBtn.visible = (this.refs.table.rowCount === 1) ? false : flag;
     }
 
     render() {
@@ -27,11 +29,13 @@ class AppDrawer extends Component {
                 <ExtButton
                     clickAction = {() => this.refs.table.delColumn()}
                     visibility = {this.showDelBtn}
+                    ref = "delColBtn"
                     btnRole = "delCol">
                 </ExtButton>
                 <ExtButton
                     clickAction = {() => this.refs.table.delRow()}
                     visibility = {this.showDelBtn}
+                    ref = "delRowBtn"
                     btnRole = "delRow">
                 </ExtButton>
                 <div className = "table-container">

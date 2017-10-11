@@ -7,9 +7,7 @@ class ExtButton extends Component {
         this.state = {
             classes: 'button',
             styles: {
-                visibility: 'hidden',
-                top: 0,
-                left: 20
+                visibility: 'hidden'
             }
         };
 
@@ -25,6 +23,7 @@ class ExtButton extends Component {
             case 'addCol':
             case 'addRow':
                 classList += ` button--add`;
+                classList += ` button--add button--add-${this.props.btnRole === 'addRow' ? 'row' : 'col'}`;
                 break;
             default:
                 break;
@@ -37,12 +36,17 @@ class ExtButton extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.visible = true;
+    set positionX(pos) {
+        this.refs.button.style.left = `${pos}px`;
+    }
+
+    set positionY(pos) {
+        this.refs.button.style.top = `${pos}px`;
     }
 
     set visible(flag) {
         if (flag) {
+            clearTimeout(this._hideTimeout);
             this.setState({
                 styles: {
                     visibility: 'visible'
@@ -55,17 +59,12 @@ class ExtButton extends Component {
                         visibility: 'hidden'
                     }
                 });
-            }, 150);
+            }, 100);
         }
     }
 
     get delButton() {
         return this.props.btnRole === 'delCol' || this.props.btnRole === 'delRow';
-    }
-
-    handleMouseOver() {
-        clearTimeout(this._hideTimeout);
-        this.visible = true;
     }
 
     handleClick() {
@@ -75,10 +74,18 @@ class ExtButton extends Component {
         }
     }
 
+    handleMouseLeave() {
+        if (this.delButton) {
+            this.visible = false;
+        }
+    }
+
     render() {
         return (
             <button
-                onMouseOver = {() => this.handleMouseOver()}
+                ref="button"
+                onMouseOver = {() => this.visible = true}
+                onMouseLeave = {() => this.handleMouseLeave()}
                 onClick = {() => this.handleClick()}
                 className = {this.state.classes}
                 style = {this.state.styles}>
