@@ -5,14 +5,6 @@ import './app-drawer.css';
 
 class AppDrawer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            showDelBtn: false
-        };
-        this.showDelBtn = false;
-    }
-
     handlePositionChange(currX, currY) {
         this.refs.delColBtn.positionX = currX;
         this.refs.delRowBtn.positionY = currY + window.pageYOffset;
@@ -28,13 +20,11 @@ class AppDrawer extends Component {
             <div>
                 <ExtButton
                     clickAction = {() => this.refs.table.delColumn()}
-                    visibility = {this.showDelBtn}
                     ref = "delColBtn"
                     btnRole = "delCol">
                 </ExtButton>
                 <ExtButton
                     clickAction = {() => this.refs.table.delRow()}
-                    visibility = {this.showDelBtn}
                     ref = "delRowBtn"
                     btnRole = "delRow">
                 </ExtButton>
