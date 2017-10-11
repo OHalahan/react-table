@@ -23,6 +23,13 @@ class ExtTable extends Component {
         }
     }
 
+    _resetControls() {
+        this.setState({
+            currRow: null,
+            currColumn: null
+        });
+    }
+
     _addCell(row, place) {
         row.insertCell(place).classList.add('table__cell');
     }
@@ -84,8 +91,8 @@ class ExtTable extends Component {
     render() {
         return (
             <table className="table" ref="table"
-                onMouseOver={event => this.mouseOverEvent(event)}
-                onMouseLeave={() => this.mouseLeaveEvent()}>
+                onMouseOver = {event => this.mouseOverEvent(event)}
+                onMouseLeave = {() => this.mouseLeaveEvent()}>
             </table>
         );
     }
