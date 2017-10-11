@@ -85,8 +85,8 @@ class ExtTable extends Component {
         return (
             <table className="table" ref="table"
                 onMouseOver={event => this.mouseOverEvent(event)}
-                onMouseLeave={() => this.mouseLeaveEvent()}
-            ></table>
+                onMouseLeave={() => this.mouseLeaveEvent()}>
+            </table>
         );
     }
 
